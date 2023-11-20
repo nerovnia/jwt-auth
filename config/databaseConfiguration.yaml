@@ -1,0 +1,3 @@
+db:
+  mysql:
+    url: "mysql://root:example@localhost:3306/jwtnest"
