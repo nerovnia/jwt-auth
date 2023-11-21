@@ -1,5 +1,5 @@
 import configLoader from './configLoader';
 
 export default () => {
-  return configLoader('./yaml/database.config.yaml');
+  return configLoader('./yaml/tokens.config.yaml');
 };
