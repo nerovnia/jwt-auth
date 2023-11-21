@@ -9,7 +9,7 @@ export class AuthController {
     //this.authService = authService;
   }
 
-  @Post('/local/signup')
+  @Post('/local/signup'): Promise<Tokens>
   signupLocal(@Body() dto: AuthDto) {
     this.authService.signupLocal(dto);
   }
