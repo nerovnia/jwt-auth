@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthDto } from './dto';
 import * as bcrypt from 'bcrypt';
-import { Tokens } from './types';
+import { Tokens } from './types/tokens.type';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
@@ -42,6 +42,10 @@ export class AuthService {
         },
       ),
     ]);
+    return {
+      access_token: at,
+      refresh_token: rt,
+    };
   }
 
   async signupLocal(dto: AuthDto): Promise<Tokens> {
@@ -52,6 +56,9 @@ export class AuthService {
         hash,
       },
     });
+
+    const tokens = await this.getTokens(newUser.id, newUser.email);
+    return tokens;
   }
   signinLocal() { }
   logout() { }
